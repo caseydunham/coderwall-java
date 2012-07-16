@@ -10,6 +10,7 @@ public class User {
   private String team;
   private Integer endorsements;
   private Set<Badge> badges;
+  private Account accounts; // labeled as "accounts" in the api although there is only the github account
 
   public User() {}
 
@@ -30,6 +31,9 @@ public class User {
 
   public Set<Badge> getBadges() { return badges; }
   public void setBadges(Set<Badge> badges) { this.badges = badges; }
+  
+  public Account getAccounts() { return accounts; }
+  public void setAccounts(Account accounts) { this.accounts = accounts; }
 
   @Override
   public String toString() {
@@ -37,6 +41,7 @@ public class User {
     sb.append("Username: ").append(getUsername())
       .append("\nName: ").append(getName())
       .append("\nTeam: ").append(getTeam())
+      .append("\n").append(getAccounts())
       .append("\nLocation: ").append(getLocation())
       .append("\nEndorsements: ").append(getEndorsements());
     for (final Badge b : getBadges()) {
