@@ -6,6 +6,7 @@ public class Badge {
 
   private String badge;
   private String description;
+  private String created;
 
   public Badge() {}
 
@@ -17,12 +18,16 @@ public class Badge {
 
   public String getDescription() { return description; }
   public void setDescription(String description) { this.description = description; }
+  
+  public String getCreated() { return created; }
+  public void setCreated(String created) { this.created = created; }
 
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder();
     sb.append("\nBadge: ").append(getName())
       .append("\nDescription: ").append(getDescription())
+      .append("\nCreated: ").append(getCreated())
       .append("\nURL: ").append(getBadge());
     return sb.toString();
   }
