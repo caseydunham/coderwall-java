@@ -18,13 +18,13 @@ public class CoderWallImpl implements CoderWall {
 
   public CoderWallImpl() {}
 
-  public User getUser(final String username) throws CoderWallException {
+  public User getUser(final String username, final boolean full) throws CoderWallException {
     if (username == null || username.isEmpty()) {
       throw new CoderWallException("invalid username");
     }
 
     try {
-      final URL url = new URL(API_URL + username + FORMAT);
+      final URL url = new URL(API_URL + username + FORMAT + (full ? "?full=true" : ""));
       final HttpURLConnection conn = (HttpURLConnection)url.openConnection();
       int respCode = conn.getResponseCode();
       if (respCode != HttpURLConnection.HTTP_OK) {

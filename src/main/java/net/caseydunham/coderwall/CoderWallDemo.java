@@ -16,7 +16,7 @@ public class CoderWallDemo {
 
     final String username = args[0];
     final CoderWall cw = new CoderWallImpl();
-    final User user = cw.getUser(username);
+    final User user = cw.getUser(username, true);
     System.out.println(user);
   }
   
