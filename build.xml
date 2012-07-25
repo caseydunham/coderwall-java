@@ -11,8 +11,6 @@
 
   <property name="main" value="src/main"/>
   <property name="src" value="${main}/java"/>
-  <property name="config" value="${main}/config"/>
-  <property name="resources" value="${main}/resources"/>
   <property name="test" value="src/test"/>
   <property name="test-src" value="${test}/java"/>
   <property name="test-config" value="${test}/config"/>
@@ -47,10 +45,6 @@
   </target>
   
   <target name="compile" depends="init">
-    <copy todir="${build}">
-      <fileset dir="${config}"/>
-      <fileset dir="${resources}"/>
-    </copy>
     <javac srcdir="${src}" destdir="${build}" debug="yes" target="1.6">
       <classpath refid="build.classpath"/>
     </javac>
