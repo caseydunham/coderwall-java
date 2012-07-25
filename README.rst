@@ -20,3 +20,4 @@ From the source root where the build.xml file is:
 
 :Authors:
     Casey Dunham
+    Florian Mierzejewski
