@@ -31,4 +31,5 @@ public class Badge {
       .append("\nURL: ").append(getBadge());
     return sb.toString();
   }
+
 }

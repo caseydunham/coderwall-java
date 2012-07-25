@@ -20,4 +20,5 @@ public class Account {
       .append("\nTwitter: ").append(getTwitter());
     return sb.toString();
   }
+
 }
