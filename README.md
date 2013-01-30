@@ -1,4 +1,4 @@
-# coderwall-java
+# coderwall-java        [![Build Status](https://travis-ci.org/caseydunham/coderwall-java.png?branch=master)](https://travis-ci.org/caseydunham/coderwall-java)
 
 Simple Java API library for coderwall.com
 
