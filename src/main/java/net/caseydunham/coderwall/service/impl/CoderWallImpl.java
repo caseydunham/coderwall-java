@@ -19,6 +19,10 @@ public class CoderWallImpl implements CoderWall {
 	public CoderWallImpl() {
 	}
 
+	public User getUser(final String username) throws CoderWallException {
+		return getUser(username, true);
+	}
+
 	public User getUser(final String username, final boolean full) throws CoderWallException {
 		if (username == null || username.isEmpty()) {
 			throw new CoderWallException("invalid username");
