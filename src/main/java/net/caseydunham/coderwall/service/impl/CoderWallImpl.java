@@ -13,29 +13,30 @@ import java.net.URL;
 
 public class CoderWallImpl implements CoderWall {
 
-  private static final String API_URL = "http://www.coderwall.com/";
-  private static final String FORMAT = ".json";
+	private static final String API_URL = "http://www.coderwall.com/";
+	private static final String FORMAT = ".json";
 
-  public CoderWallImpl() {}
+	public CoderWallImpl() {
+	}
 
-  public User getUser(final String username, final boolean full) throws CoderWallException {
-    if (username == null || username.isEmpty()) {
-      throw new CoderWallException("invalid username");
-    }
+	public User getUser(final String username, final boolean full) throws CoderWallException {
+		if (username == null || username.isEmpty()) {
+			throw new CoderWallException("invalid username");
+		}
 
-    try {
-      final URL url = new URL(API_URL + username + FORMAT + (full ? "?full=true" : ""));
-      final HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-      int respCode = conn.getResponseCode();
-      if (respCode != HttpURLConnection.HTTP_OK) {
-        throw new CoderWallException(respCode + " " + conn.getResponseMessage());
-      }
-      return new Gson().fromJson(new InputStreamReader(conn.getInputStream()), User.class);
-    } catch (final MalformedURLException ex) {
-      throw new CoderWallException(ex);
-    } catch (final IOException ex) {
-      throw new CoderWallException(ex);
-    }
-  }
+		try {
+			final URL url = new URL(API_URL + username + FORMAT + (full ? "?full=true" : ""));
+			final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			int respCode = conn.getResponseCode();
+			if (respCode != HttpURLConnection.HTTP_OK) {
+				throw new CoderWallException(respCode + " " + conn.getResponseMessage());
+			}
+			return new Gson().fromJson(new InputStreamReader(conn.getInputStream()), User.class);
+		} catch (final MalformedURLException ex) {
+			throw new CoderWallException(ex);
+		} catch (final IOException ex) {
+			throw new CoderWallException(ex);
+		}
+	}
 
 }

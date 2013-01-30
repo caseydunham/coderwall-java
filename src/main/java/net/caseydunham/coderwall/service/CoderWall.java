@@ -5,7 +5,7 @@ import net.caseydunham.coderwall.exception.CoderWallException;
 
 public interface CoderWall {
 
-  User getUser(final String username, final boolean full) throws CoderWallException;
+	User getUser(final String username, final boolean full) throws CoderWallException;
 
 }
 
