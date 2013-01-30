@@ -38,5 +38,5 @@ THE SOFTWARE.
 
 ## Authors
 
-*  Casey Dunham
-*  Florian Mierzejewski
+*  Casey Dunham [![endorse](http://api.coderwall.com/caseydunham/endorse.png)](http://coderwall.com/caseydunham)
+*  Florian Mierzejewski [![endorse](http://api.coderwall.com/florianmski/endorse.png)](http://coderwall.com/florianmski)
