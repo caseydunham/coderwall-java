@@ -170,3 +170,5 @@ pip-log.txt
 bin
 
 target
+/coderwall-java.ipr
+/coderwall-java.iml
