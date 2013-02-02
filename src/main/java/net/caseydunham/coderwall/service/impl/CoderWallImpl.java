@@ -7,17 +7,19 @@ import net.caseydunham.coderwall.service.CoderWall;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Scanner;
 
 public class CoderWallImpl implements CoderWall {
 
-	private static final String API_URL = "https://www.coderwall.com/";
-	private static final String FORMAT = ".json";
+	private String baseUrl;
 
 	public CoderWallImpl() {
+		setBaseUrl(API_URL);
 	}
 
 	public User getUser(final String username) throws CoderWallException {
@@ -30,18 +32,47 @@ public class CoderWallImpl implements CoderWall {
 		}
 
 		try {
-			final URL url = new URL(API_URL + username + FORMAT + (full ? "?full=true" : ""));
-			final HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+			final String url = getBaseUrl() + username + FORMAT + (full ? "?full=true" : "");
+			final HttpsURLConnection conn = getConnection(url);
 			int respCode = conn.getResponseCode();
 			if (respCode != HttpURLConnection.HTTP_OK) {
 				throw new CoderWallException(respCode + " " + conn.getResponseMessage());
 			}
-			return new Gson().fromJson(new InputStreamReader(conn.getInputStream()), User.class);
+			String response = getResponseBody(conn.getInputStream());
+			return new Gson().fromJson(response, User.class);
 		} catch (final MalformedURLException ex) {
 			throw new CoderWallException(ex);
 		} catch (final IOException ex) {
 			throw new CoderWallException(ex);
 		}
 	}
+
+	private HttpsURLConnection getConnection(final String url) throws IOException {
+		HttpsURLConnection connection = null;
+		try {
+			connection = (HttpsURLConnection) new URL(url).openConnection();
+			connection.setRequestMethod("GET");
+			return connection;
+		} catch (ProtocolException ex) {
+			throw new IOException(ex);
+		} catch (MalformedURLException ex) {
+			throw new IOException(ex);
+		} catch (IOException ex) {
+			throw new IOException(ex);
+		} finally {
+			if (connection != null) {
+				connection.disconnect();
+			}
+		}
+	}
+
+	private String getResponseBody(InputStream is) throws IOException {
+		String s = new Scanner(is, "utf-8").useDelimiter("\\A").next();
+		is.close();
+		return s;
+	}
+
+	public String getBaseUrl() { return baseUrl; }
+	public void setBaseUrl(String baseUrl) { this.baseUrl = baseUrl; }
 
 }
