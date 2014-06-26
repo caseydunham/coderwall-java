@@ -1,5 +1,6 @@
 package net.caseydunham.coderwall;
 
+import net.caseydunham.coderwall.data.User;
 import net.caseydunham.coderwall.exception.CoderWallException;
 import net.caseydunham.coderwall.service.CoderWall;
 import net.caseydunham.coderwall.service.impl.CoderWallImpl;
@@ -30,10 +31,7 @@ public class TestCoderWall {
 	@Test(expected = CoderWallException.class)
 	public void testGetUserThrowsExceptionOnInvalidURL() throws CoderWallException {
 		CoderWall cw = new CoderWallImpl();
-		assertEquals(CoderWall.API_URL, cw.getBaseUrl());
-		cw.getUser("caseydunham");
 		cw.setBaseUrl("ht//www.coderwall.com");
-		assertEquals("ht//www.coderwall.com", cw.getBaseUrl());
 		cw.getUser("caseydunham");
 	}
 
