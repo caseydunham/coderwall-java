@@ -1,5 +1,6 @@
 package net.caseydunham.coderwall.data;
 
+@SuppressWarnings("unused")
 public class Account {
 
 	private String github;

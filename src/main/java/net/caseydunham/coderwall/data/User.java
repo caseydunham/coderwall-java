@@ -2,6 +2,7 @@ package net.caseydunham.coderwall.data;
 
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class User {
 
 	private String username;
